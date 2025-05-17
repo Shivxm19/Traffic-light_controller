@@ -1,0 +1,45 @@
+import time
+
+# Define durations for each traffic density
+density_map = {
+    "low": 5,
+    "medium": 10,
+    "high": 15
+}
+
+def simulate_signal(density):
+    if density not in density_map:
+        print("Invalid density input. Please enter 'low', 'medium', or 'high'.")
+        return
+
+    green_time = density_map[density]
+    
+    print(f"\nVehicle Density: {density.capitalize()}")
+    print("Signal Status: GREEN")
+    for i in range(green_time, 0, -1):
+        print(f"Green light on for {i} seconds")
+        time.sleep(1)
+
+    print("\nSignal Status: YELLOW")
+    for i in range(3, 0, -1):
+        print(f"Yellow light on for {i} seconds")
+        time.sleep(1)
+
+    print("\nSignal Status: RED")
+    for i in range(5, 0, -1):
+        print(f"Red light on for {i} seconds")
+        time.sleep(1)
+
+# Main loop
+def main():
+    while True:
+        density = input("\nEnter vehicle density (low / medium / high): ").lower()
+        simulate_signal(density)
+        
+        again = input("Do you want to simulate again? (yes/no): ").lower()
+        if again != 'yes':
+            print("Exiting simulation.")
+            break
+
+if _name_ == "_main_":
+    main()
